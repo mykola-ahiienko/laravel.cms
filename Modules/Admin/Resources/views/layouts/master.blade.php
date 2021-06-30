@@ -1,19 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Module Admin</title>
+<!doctype html>
+<html>
+<head>
+    @include('admin::layouts.head')
+</head>
+<body>
+@include('admin::layouts.preloader')
+<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+     data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+    @include('admin::layouts.header')
+    @include('admin::layouts.sidebar')
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            @yield('content')
+        </div>
+    </div>
+    @include('admin::layouts.footer')
+</div>
 
-       {{-- Laravel Mix - CSS File --}}
-       {{-- <link rel="stylesheet" href="{{ mix('css/admin.css') }}"> --}}
-
-    </head>
-    <body>
-        @yield('content')
-
-        {{-- Laravel Mix - JS File --}}
-        {{-- <script src="{{ mix('js/admin.js') }}"></script> --}}
-    </body>
+@include('admin::layouts.footer-scripts')
+</body>
 </html>
