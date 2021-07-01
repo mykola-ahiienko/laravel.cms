@@ -12,4 +12,4 @@
 
 <script src="{{ config('admin.scripts_path') }}/sidebarmenu.js"></script>
 
-<script src=".{{ config('admin.scripts_path') }}/custom.js"></script>
+<script src="{{ config('admin.scripts_path') }}/custom.js"></script>
