@@ -5,13 +5,18 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Admin\Entities\PageTemplate;
+use Modules\Admin\Entities\{
+    PageTemplate,
+    Page
+};
 
 class PageController extends Controller
 {
     public function index()
     {
-        return view('admin::pages.index');
+        return view('admin::pages.index', [
+            'pages' => Page::all()
+        ]);
     }
 
     public function create()

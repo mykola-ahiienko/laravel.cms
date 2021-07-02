@@ -36,7 +36,7 @@
                                 Content
                             </label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="content" name="content" >
+
                             </div>
                         </div>
                     </div>
