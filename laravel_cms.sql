@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5deb2
+-- version 4.9.7deb1
 -- https://www.phpmyadmin.net/
 --
--- Хост: localhost:3306
--- Время создания: Июл 01 2021 г., 19:03
--- Версия сервера: 8.0.25-0ubuntu0.20.04.1
--- Версия PHP: 7.4.3
+-- Host: localhost:3306
+-- Generation Time: Jul 05, 2021 at 01:35 PM
+-- Server version: 8.0.25-0ubuntu0.20.10.1
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,35 +19,101 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `laravel.cms`
+-- Database: `laravel.cms`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `pages`
+-- Table structure for table `languages`
+--
+
+CREATE TABLE `languages` (
+  `id` tinyint UNSIGNED NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `code` varchar(3) NOT NULL,
+  `is_primary` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Dumping data for table `languages`
+--
+
+INSERT INTO `languages` (`id`, `name`, `code`, `is_primary`) VALUES
+(1, 'Russian', 'RU', 1),
+(3, 'English', 'EN', 0),
+(4, 'Українська', 'UA', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menus`
+--
+
+CREATE TABLE `menus` (
+  `id` tinyint UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Dumping data for table `menus`
+--
+
+INSERT INTO `menus` (`id`, `name`) VALUES
+(1, 'Header menu');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu_items`
+--
+
+CREATE TABLE `menu_items` (
+  `id` smallint UNSIGNED NOT NULL,
+  `menu_id` tinyint UNSIGNED NOT NULL,
+  `lang_id` tinyint UNSIGNED NOT NULL,
+  `type` enum('page','<a>','<span>') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `page_id` bigint UNSIGNED DEFAULT NULL,
+  `label` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `href` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `nofollow` tinyint(1) DEFAULT NULL,
+  `parent` smallint UNSIGNED NOT NULL,
+  `blank` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Dumping data for table `menu_items`
+--
+
+INSERT INTO `menu_items` (`id`, `menu_id`, `lang_id`, `type`, `page_id`, `label`, `href`, `nofollow`, `parent`, `blank`) VALUES
+(1, 1, 1, '<a>', NULL, 'Test 1/1', NULL, NULL, 0, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pages`
 --
 
 CREATE TABLE `pages` (
   `id` int NOT NULL,
   `title` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `template_id` tinyint UNSIGNED NOT NULL,
   `content` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Дамп данных таблицы `pages`
+-- Dumping data for table `pages`
 --
 
-INSERT INTO `pages` (`id`, `title`, `url`, `template_id`, `content`) VALUES
+INSERT INTO `pages` (`id`, `title`, `slug`, `template_id`, `content`) VALUES
 (1, 'Home page', '/', 1, '<h1>Home</h1>'),
 (2, 'Text', '/text/', 2, '<h1>Text</h1>');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `pages_templates`
+-- Table structure for table `pages_templates`
 --
 
 CREATE TABLE `pages_templates` (
@@ -57,7 +123,7 @@ CREATE TABLE `pages_templates` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Дамп данных таблицы `pages_templates`
+-- Dumping data for table `pages_templates`
 --
 
 INSERT INTO `pages_templates` (`id`, `name`, `file_name`) VALUES
@@ -65,33 +131,72 @@ INSERT INTO `pages_templates` (`id`, `name`, `file_name`) VALUES
 (2, 'Text page', 'text');
 
 --
--- Индексы сохранённых таблиц
+-- Indexes for dumped tables
 --
 
 --
--- Индексы таблицы `pages`
+-- Indexes for table `languages`
+--
+ALTER TABLE `languages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `menus`
+--
+ALTER TABLE `menus`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `menu_items`
+--
+ALTER TABLE `menu_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `menu_lang` (`menu_id`,`lang_id`) USING BTREE,
+  ADD KEY `parent` (`parent`),
+  ADD KEY `page_id` (`page_id`);
+
+--
+-- Indexes for table `pages`
 --
 ALTER TABLE `pages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `pages_templates`
+-- Indexes for table `pages_templates`
 --
 ALTER TABLE `pages_templates`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT для сохранённых таблиц
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT для таблицы `pages`
+-- AUTO_INCREMENT for table `languages`
+--
+ALTER TABLE `languages`
+  MODIFY `id` tinyint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `menus`
+--
+ALTER TABLE `menus`
+  MODIFY `id` tinyint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `menu_items`
+--
+ALTER TABLE `menu_items`
+  MODIFY `id` smallint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT для таблицы `pages_templates`
+-- AUTO_INCREMENT for table `pages_templates`
 --
 ALTER TABLE `pages_templates`
   MODIFY `id` smallint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
