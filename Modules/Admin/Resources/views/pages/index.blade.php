@@ -4,7 +4,7 @@
         <div class="row header-row">
             <div class="col-12 d-flex flex-row">
                 <h1>Pages</h1>
-                <a href="{{ route('admin.pages.create') }}" class="btn btn-info btn-lg" id="create-page-btn">
+                <a href="{{ route('admin.pages.create') }}" class="btn btn-info" id="create-page-btn">
                     Create page
                 </a>
             </div>
@@ -18,6 +18,7 @@
                                 <thead>
                                 <tr>
                                     <th>Title</th>
+                                    <th>Actions</th>
                                     <th>Template</th>
                                 </tr>
                                 </thead>
@@ -26,6 +27,10 @@
                                     <tr>
                                         <td>{{ $page->title }}</td>
                                         <td>{{ $page->template->name }}</td>
+                                        <td>
+                                            <a class="btn btn-success text-white btn-page-actions">Edit</a>
+                                            <a href="{{ $page->slug }}" target="_blank" class="btn btn-primary btn-page-actions">View</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
