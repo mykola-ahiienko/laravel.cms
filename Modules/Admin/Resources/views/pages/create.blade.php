@@ -49,6 +49,12 @@
                                 <h3> SEO : </h3>
                             </div>
                             <label class="col-sm-3 text-end form-label control-label col-form-label">
+                                Title
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="seo_description" name="seo_description" placeholder="<title>">
+                            </div>
+                            <label class="col-sm-3 text-end form-label control-label col-form-label">
                                  Description
                             </label>
                             <div class="col-sm-9">

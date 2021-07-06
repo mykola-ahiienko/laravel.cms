@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 05, 2021 at 01:35 PM
+-- Generation Time: Jul 06, 2021 at 12:12 PM
 -- Server version: 8.0.25-0ubuntu0.20.10.1
 -- PHP Version: 7.4.9
 
@@ -99,16 +99,21 @@ CREATE TABLE `pages` (
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `template_id` tinyint UNSIGNED NOT NULL,
-  `content` longtext NOT NULL
+  `content` longtext NOT NULL,
+  `seo_title` varchar(255) NOT NULL,
+  `seo_description` varchar(255) NOT NULL,
+  `seo_keywords` varchar(255) NOT NULL,
+  `seo_noindex` tinyint(1) NOT NULL DEFAULT '0',
+  `seo_nofollow` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `pages`
 --
 
-INSERT INTO `pages` (`id`, `title`, `slug`, `template_id`, `content`) VALUES
-(1, 'Home page', '/', 1, '<h1>Home</h1>'),
-(2, 'Text', '/text/', 2, '<h1>Text</h1>');
+INSERT INTO `pages` (`id`, `title`, `slug`, `template_id`, `content`, `seo_title`, `seo_description`, `seo_keywords`, `seo_noindex`, `seo_nofollow`) VALUES
+(1, 'Home page', '/', 1, '<h1>Home</h1>', '', '', '', 0, 0),
+(2, 'Text', '/text/', 2, '<h1>Text</h1>', '', '', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -159,7 +164,9 @@ ALTER TABLE `menu_items`
 -- Indexes for table `pages`
 --
 ALTER TABLE `pages`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`),
+  ADD UNIQUE KEY `title` (`title`);
 
 --
 -- Indexes for table `pages_templates`
