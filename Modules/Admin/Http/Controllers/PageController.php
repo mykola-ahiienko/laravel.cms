@@ -27,7 +27,7 @@ class PageController extends Controller
     }
 
     public function add(Request $request){
-        var_dump($request);
+        var_dump($request->all());
         die();
     }
 }
