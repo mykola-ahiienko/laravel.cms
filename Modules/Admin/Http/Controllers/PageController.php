@@ -27,7 +27,19 @@ class PageController extends Controller
     }
 
     public function add(Request $request){
-        var_dump($request->all());
-        die();
+        $validatedData = $request->validate([
+            'title' => ['required', 'unique:pages', 'max:255', 'min:3'],
+            'template_id' => ['required', 'not_in:0'],
+            'slug' => ['required', 'unique:pages', 'max:255'],
+            'content' => ['nullable'],
+            'seo_title' => ['nullable'],
+            'seo_description' => ['nullable'],
+            'seo_keywords' => ['nullable'],
+        ]);
+        $validatedData['seo_noindex'] = (bool)$request->input('seo_noindex');
+        $validatedData['seo_nofollow'] = (bool)$request->input('seo_nofollow');
+        if($page = Page::create($validatedData)){
+            return $page->id;
+        }
     }
 }

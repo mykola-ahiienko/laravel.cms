@@ -11,6 +11,13 @@ class Page extends Model
 
     protected $table = 'pages';
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'title', 'template_id', 'slug', 'content',
+        'seo_title', 'seo_description', 'seo_keywords', 'seo_noindex', 'seo_keywords'
+    ];
+
     public function template()
     {
         return $this->belongsTo(PageTemplate::class);

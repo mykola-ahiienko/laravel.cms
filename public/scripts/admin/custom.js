@@ -3,7 +3,6 @@ $(function() {
 
     $(".preloader").fadeOut();
 
-
     $(".left-sidebar").hover(
         function() {
             $(".navbar-header").addClass("expand-logo");
@@ -83,5 +82,13 @@ $(function() {
             $(".sidebartoggler").prop("checked", !1);
             $("#main-wrapper").attr("data-sidebartype", "full");
         }
+    });
+
+    $('.form-check-input').on('change', function() {
+        $(this).val($(this).is(":checked"));
+    });
+
+    $('.is-invalid').keyup(function() {
+        $(this).removeClass('is-invalid');
     });
 });

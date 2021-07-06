@@ -10,16 +10,28 @@
                         <div class="form-group row">
                             <div class="col-sm-12">
                                 <h3>Required fields : </h3>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif
                             </div>
                             <label class="col-sm-3 text-end form-label control-label col-form-label">Title</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="title" name="title" placeholder="Page Title">
+                                <input name="title" placeholder="Page Title" type="text" class="form-control @error('title') is-invalid @enderror">
+                                @error('title')
+                                <div class="invalid-feedback"><b>{{ $message }}</b></div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-3 text-end form-label control-label col-form-label">Template</label>
                             <div class="col-sm-9">
-                                <select class="select2 form-select shadow-none" style="width: 100%; height:36px;">
+                                <select name="template_id" class="select2 form-select shadow-none" style="width: 100%; height:36px;">
                                     @foreach($templates as $template)
                                         <option value="{{ $template->id }}">{{ $template->name }}</option>
                                     @endforeach
@@ -33,15 +45,18 @@
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="url"> {{ URL::to('/') . '/' }}</span>
+                                        <span class="input-group-text" id="slug"> {{ URL::to('/') . '/' }}</span>
                                     </div>
-                                    <input type="text" name="url" class="form-control"aria-label="Username" aria-describedby="url">
-                                </div>
+                                    <input type="text" name="slug" class="form-control @error('slug') is-invalid @enderror"aria-label="slug" aria-describedby="slug">
+                                    @error('slug')
+                                    <div class="invalid-feedback"><b>{{ $message }}</b></div>@enderror
+                                 </div>
                              </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12">
                                 <h3>Content :  </h3>
+                                <input type="hidden" name="content">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -52,31 +67,31 @@
                                 Title
                             </label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="seo_description" name="seo_description" placeholder="<title>">
+                                <input name="seo_title" type="text" class="form-control" name="seo_title" placeholder="<title>">
                             </div>
                             <label class="col-sm-3 text-end form-label control-label col-form-label">
                                  Description
                             </label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="seo_description" name="seo_description" placeholder="<meta name=description>">
+                                <input name="seo_description" type="text" class="form-control" placeholder="<meta name=description>">
                             </div>
                             <label class="col-sm-3 text-end form-label control-label col-form-label">
                                  Keywords
                             </label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="seo_keywords" name="seo_keywords" placeholder="<meta name=keywords>">
+                                <input name="seo_keywords" type="text" class="form-control"  placeholder="<meta name=keywords>">
                             </div>
                             <label class="col-sm-3 text-end form-label control-label col-form-label">
                                 No index
                             </label>
-                            <div class="col-sm-9" style="margin: auto">
-                                <input type="checkbox" class="form-check-input form-checkboxes" id="seo_noindex" name="seo_noindex">
+                            <div class="col-sm-9 checkbox-col">
+                                <input name="seo_noindex" type="checkbox" value="false" class="form-check-input">
                             </div>
                             <label class="col-sm-3 text-end form-label control-label col-form-label">
                                 No follow
                             </label>
-                            <div class="col-sm-9" style="margin: auto">
-                                <input type="checkbox" class="form-check-input form-checkboxes" id="seo_nofollow" name="seo_nofollow">
+                            <div class="col-sm-9 checkbox-col">
+                                <input name="seo_nofollow" type="checkbox" value="false" class="form-check-input">
                             </div>
                     </div>
                     <div class="border-top">
