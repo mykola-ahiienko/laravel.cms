@@ -6,8 +6,10 @@ Route::name('admin.')->prefix('admin')->group(function() {
 
     Route::name('pages.')->prefix('pages')->group(function() {
         Route::get('/', 'PageController@index')->name('main');
-        Route::get('/create/', 'PageController@create')->name('create');
-        Route::post('/create/', 'PageController@add');
+        Route::get('/new/', 'PageController@create')->name('create');
+        Route::post('/new/', 'PageController@add');
+        Route::get('/edit/{id}', 'PageController@edit')->name('edit');
+        Route::post('/edit/{id}', 'PageController@update');
     });
 
 });

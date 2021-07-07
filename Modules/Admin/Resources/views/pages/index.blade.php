@@ -18,8 +18,8 @@
                                 <thead>
                                 <tr>
                                     <th>Title</th>
-                                    <th>Actions</th>
                                     <th>Template</th>
+                                    <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -28,8 +28,8 @@
                                         <td>{{ $page->title }}</td>
                                         <td>{{ $page->template->name }}</td>
                                         <td>
-                                            <a class="btn btn-success text-white btn-page-actions">Edit</a>
-                                            <a href="{{ $page->slug }}" target="_blank" class="btn btn-primary btn-page-actions">View</a>
+                                            <a href="{{ route('admin.pages.edit', [$page]) }}" class="btn btn-success text-white btn-page-actions">Edit</a>
+                                            <a href="{{ URL::to('/') . '/'  . $page->slug }}" target="_blank" class="btn btn-primary btn-page-actions">View</a>
                                         </td>
                                     </tr>
                                 @endforeach

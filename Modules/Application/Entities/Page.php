@@ -15,7 +15,7 @@ class Page extends Model
 
     protected $fillable = [
         'title', 'template_id', 'slug', 'content',
-        'seo_title', 'seo_description', 'seo_keywords', 'seo_noindex', 'seo_keywords'
+        'seo_title', 'seo_description', 'seo_keywords', 'seo_noindex', 'seo_nofollow'
     ];
 
     public function template()
