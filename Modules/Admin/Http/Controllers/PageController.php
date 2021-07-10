@@ -32,14 +32,14 @@ class PageController extends Controller
         if($action === 'add'){
             $addValidationRules = [
                 'title' => ['required', 'unique:pages', 'max:255', 'min:3'],
-                'slug' => ['required', 'unique:pages', 'max:255']
+                'slug' => ['required', 'unique:pages', 'regex:/^\//', 'max:255']
             ];
             return array_merge($addValidationRules, $this->commonValidationRules);
         }
         if($action === 'update' && $id){
             $updateValidationRules = [
                 'title' => ['required', 'unique:pages,title,' . $id, 'max:255', 'min:3'],
-                'slug' => ['required', 'unique:pages,slug,' . $id, 'max:255'],
+                'slug' => ['required', 'unique:pages,slug,' . $id, 'regex:/^\//', 'max:255'],
             ];
             return array_merge($updateValidationRules, $this->commonValidationRules);
         }

@@ -36,7 +36,7 @@
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="slug"> {{ URL::to('/') . '/' }}</span>
+                                        <span class="input-group-text" id="slug"> {{ URL::to('/') }}</span>
                                     </div>
                                     <input type="text" name="slug" class="form-control @error('slug') is-invalid @enderror"aria-label="slug" aria-describedby="slug">
                                     @error('slug')

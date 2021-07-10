@@ -4,7 +4,7 @@
         <div class="row header-row">
             <div class="col-12 d-flex flex-row">
                 <h1>Pages</h1>
-                <a href="{{ route('admin.pages.create') }}" class="btn btn-info" id="create-page-btn">
+                <a href="{{ route('admin.pages.create') }}" class="btn btn-info btn-page-action">
                     Create page
                 </a>
             </div>

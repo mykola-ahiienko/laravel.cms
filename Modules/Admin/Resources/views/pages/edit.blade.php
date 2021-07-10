@@ -1,6 +1,18 @@
 @extends('admin::layouts.master')
 @section('content')
-    <h1>Edit page</h1>
+    <div class="row header-row">
+        <div class="col-12 d-flex flex-row">
+            <h1>Edit page</h1>
+            <a href="{{ url('/') . $page->slug }}" class="btn btn-success btn-page-action">
+                View page
+            </a>
+        </div>
+    </div>
+    @if(Request::server('HTTP_REFERER') === route('admin.pages.create'))
+        <div class="alert alert-success" role="alert">
+            Page was created successfully
+        </div>
+    @endif
     @isset($success)
         <div class="alert alert-success" role="alert">
            Page was edited successfully
@@ -41,7 +53,7 @@
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="slug"> {{ URL::to('/') . '/' }}</span>
+                                        <span class="input-group-text" id="slug"> {{ URL::to('/') }}</span>
                                     </div>
                                     <input type="text" value="{{ $page->slug }}" name="slug" class="form-control @error('slug') is-invalid @enderror"aria-label="slug" aria-describedby="slug">
                                     @error('slug')

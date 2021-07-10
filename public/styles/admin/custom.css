@@ -1,7 +1,7 @@
 .pages h1{
     margin-top: auto;
 }
-#create-page-btn{
+.btn-page-action{
     height: max-content;
     margin: auto 0 auto 10px;
     border-radius: 3px;
