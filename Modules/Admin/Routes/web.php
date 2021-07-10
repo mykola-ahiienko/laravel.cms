@@ -10,6 +10,7 @@ Route::name('admin.')->prefix('admin')->group(function() {
         Route::post('/new/', 'PageController@add');
         Route::get('/edit/{id}', 'PageController@edit')->name('edit');
         Route::post('/edit/{id}', 'PageController@update');
+        Route::get('/delete/{id}', 'PageController@delete')->name('delete');
     });
 
 });

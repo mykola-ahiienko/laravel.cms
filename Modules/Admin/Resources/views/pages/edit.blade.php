@@ -6,6 +6,9 @@
             <a href="{{ url('/') . $page->slug }}" class="btn btn-success btn-page-action">
                 View page
             </a>
+            <a onclick="return confirm('Are you sure?')" href="{{ route('admin.pages.delete', [$page]) }}" class="btn btn-danger btn-page-action">
+                Delete page
+            </a>
         </div>
     </div>
     @if(Request::server('HTTP_REFERER') === route('admin.pages.create'))

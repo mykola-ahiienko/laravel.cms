@@ -5,7 +5,7 @@ namespace Modules\Application\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Application\Entities\Page;
+use Modules\Admin\Entities\Page;
 
 class PagesController extends Controller
 {
