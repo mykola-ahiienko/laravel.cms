@@ -17,6 +17,15 @@ class Page extends Model
         'seo_title', 'seo_description', 'seo_keywords', 'seo_noindex', 'seo_nofollow'
     ];
 
+
+    public function setSlugAttribute($value)
+    {
+        //remove last "/" char if exist
+        if(substr($value,-1) === '/'){
+            $this->attributes['slug'] = substr($value, 0, -1);
+        }
+    }
+
     public function template()
     {
         return $this->belongsTo(PageTemplate::class);
