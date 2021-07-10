@@ -18,7 +18,7 @@ class CreatePagesTable extends Migration
             $table->string('title')->unique();
             $table->string('slug')->unique();
             $table->unsignedSmallInteger('template_id');
-            $table->longText('content');
+            $table->longText('content')->nullable();
             $table->string('seo_title')->nullable();
             $table->string('seo_description')->nullable();
             $table->string('seo_keywords')->nullable();
