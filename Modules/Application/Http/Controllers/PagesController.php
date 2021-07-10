@@ -15,7 +15,9 @@ class PagesController extends Controller
             $templateModule = 'application::';
             $template = $templateModule . $page->template->file_name;
             if (view()->exists($template)) {
-                return view($template);
+                return view($template, [
+                    'page' => $page
+                ]);
             }
             abort(404);
         }
