@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePagesTemplatesTable extends Migration
+class CreateAdminUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreatePagesTemplatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pages_templates', function (Blueprint $table) {
+        Schema::create('admin_users', function (Blueprint $table) {
             $table->smallIncrements('id');
-            $table->string('name');
-            $table->string('file_name');
+            $table->string('email')->unique();
+            $table->string('password');
         });
     }
 
@@ -27,6 +27,6 @@ class CreatePagesTemplatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages_templates');
+        Schema::dropIfExists('admin_users');
     }
 }
