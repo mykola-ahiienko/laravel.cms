@@ -5,8 +5,9 @@ namespace Modules\Admin\Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
-class SeedPagesTemplatesTableSeeder extends Seeder
+class AdminUsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,15 +18,10 @@ class SeedPagesTemplatesTableSeeder extends Seeder
     {
         Model::unguard();
 
-        DB::table('pages_templates')->insert([
+        DB::table('admin_users')->insert([
             'id' => 1,
-            'name' => 'Home page',
-            'file_name' => 'index'
-        ]);
-        DB::table('pages_templates')->insert([
-            'id' => 2,
-            'name' => 'Text page',
-            'file_name' => 'text'
+            'email' => 'root@email.com',
+            'password' => Hash::make('root')
         ]);
     }
 }

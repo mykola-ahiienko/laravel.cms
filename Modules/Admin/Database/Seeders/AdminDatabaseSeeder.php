@@ -16,6 +16,9 @@ class AdminDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(SeedPagesTemplatesTableSeeder::class);
+        $this->call([
+            PagesTemplatesTableSeeder::class,
+            AdminUsersTableSeeder::class,
+        ]);
     }
 }
