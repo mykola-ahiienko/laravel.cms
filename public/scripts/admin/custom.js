@@ -91,4 +91,10 @@ $(function() {
     $('.is-invalid').keyup(function() {
         $(this).removeClass('is-invalid');
     });
+
+    $('#multiple-select').change(function() {
+      if($('#multiple-select-error').css('display') !== 'none'){
+          $('#multiple-select-error').css('display', 'none');
+      }
+    });
 });

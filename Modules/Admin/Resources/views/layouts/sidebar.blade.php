@@ -17,6 +17,15 @@
                         </span>
                     </a>
                 </li>
+
+                <li class="sidebar-item">
+                    <a href="{{ route('admin.content-groups.main') }}" class="sidebar-link waves-effect waves-dark" aria-expanded="false">
+                        <i class="fas fa-cog"></i>
+                        <span class="hide-menu">
+                            Content
+                        </span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

@@ -1,5 +1,8 @@
-.pages h1{
+.pages h1, .content-fields h1{
     margin-top: auto;
+}
+.content-fields h1{
+    margin-top: 5px;
 }
 .btn-page-action{
     height: max-content;

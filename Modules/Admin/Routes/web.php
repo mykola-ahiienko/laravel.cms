@@ -20,5 +20,10 @@ Route::name('admin.')->prefix('admin')->group(function() {
             Route::get('/delete/{id}', 'PageController@delete')->name('delete');
         });
 
+        Route::name('content-groups.')->prefix('content-groups')->group(function() {
+            Route::get('/', 'ContentGroupsController@index')->name('main');
+            Route::get('/new/', 'ContentGroupsController@create')->name('create');
+            Route::post('/new/', 'ContentGroupsController@add');
+        });
     });
 });

@@ -84,10 +84,11 @@
                             <div class="col-sm-9 checkbox-col">
                                 <input name="seo_nofollow" type="checkbox" value="false" class="form-check-input">
                             </div>
-                    </div>
-                    <div class="border-top">
-                        <div class="card-body">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        <div class="border-top">
+                            <div class="card-body">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
                         </div>
                     </div>
                 </form>

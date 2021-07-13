@@ -15,4 +15,9 @@ class PageTemplate extends Model
     {
         return $this->hasMany(Page::class);
     }
+
+    public function content_groups()
+    {
+        return $this->belongsToMany(ContentGroup::class);
+    }
 }

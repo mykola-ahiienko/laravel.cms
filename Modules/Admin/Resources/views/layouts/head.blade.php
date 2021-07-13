@@ -7,11 +7,13 @@
 
 <link rel="icon" type="image/png" sizes="16x16" href="{{ config('admin.images_path') }}/favicon.png">
 
-@if(Route::current()->getName() === 'admin.pages.main')
+@if(in_array(Route::current()->getName(), ['admin.pages.main', 'admin.content-groups.main']))
     <link rel="stylesheet" type="text/css" href="{{ config('admin.libraries_path') }}/multicheck/multicheck.css">
     <link href="{{ config('admin.libraries_path') }}/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
 @endif
-
+@if(in_array(Route::current()->getName(),['admin.content-groups.create']))
+    <link rel="stylesheet" type="text/css" href="{{ config('admin.libraries_path') }}/select2/dist/css/select2.min.css">
+@endif
 <link href="{{ config('admin.styles_path') }}/style.min.css" rel="stylesheet">
 <link href="{{ config('admin.styles_path') }}/custom.css" rel="stylesheet">
 
