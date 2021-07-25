@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+  cms:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    depends_on:
+      - cms_db
+
+  cms_db:
+    image: mysql:5.7.8
+    environment:
+      MYSQL_DATABASE: laravel.cms
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./storage/dbdata:/var/lib/mysql
+    ports:
+      - 33063:3306
